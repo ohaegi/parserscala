@@ -10,10 +10,12 @@ object MyParser extends App {
 
   private val reader = Source.fromFile(fileStr, "cp1252")
   private val natualPaser = new NaturalParsing()
-  private val naturalSpaceToken = new TokenizerSep(reader, natualPaser)
+  private val lexer = new Lexerizer(reader, natualPaser);
   
-  private val mainToken: Option[Token] = naturalSpaceToken.getMainToken()
+  private val mainToken: Option[Token] = lexer.run()
   
+  
+
   private var current: Option[Token] =mainToken
   
   while (current.get.hasNext()) {
